@@ -116,9 +116,12 @@ function renderIcon(fc: XFieldConf){
 }
 
 function renderFieldPanel(groups: ModeGroup[], dragstart: Function){
+  console.log(groups)
   return groups.map((group, i) => {
     const title = group.title ? <h3>{group.title}</h3> : null
     const fcs = group.fieldConfs
+    console.log(group)
+debugger
     const types = fcs.filter(fc => fc != null).map(fc => {
       const props = {
         'class': 'xform-designer-field xform-draggable xform-template',
@@ -126,6 +129,7 @@ function renderFieldPanel(groups: ModeGroup[], dragstart: Function){
         'onMousedown': (e: Event) => dragstart(e, DragModeEnum.INSERT),
         [ATTRS.XFIELD_TYPE]: fc.type,
       }
+      console.log(fc)
 
       return (
         <div {...props}>
@@ -322,7 +326,7 @@ export default defineComponent({
       if(null == mode || mode.length == 0) return []
 
       const group = (typeof mode[0] != 'object' ? [{ types: mode, title: '' }] : mode) as ModeGroup[]
-      for(const g of group) g.fieldConfs = g.types.map(Store.findFieldConf)
+      //for(const g of group) g.fieldConfs = g.fields;
       return group
     })
 
@@ -390,6 +394,9 @@ export default defineComponent({
     const schema: XFormSchema = instance.schema
     const groups: ModeGroup[] = instance.groups as ModeGroup[]
     const fields: XField[] = Array.isArray(schema.fields) ? schema.fields : []
+console.log(JSON.stringify(fields));
+
+    debugger
 
     const listClassName = {
       'xform-designer-list': true,
@@ -403,6 +410,7 @@ export default defineComponent({
           { typeof slots.tool == 'function' && slots.tool() }
           <div ref="scroll" class="xform-designer-scroll xform-is-scroll">
             <div ref="list" class={listClassName}>
+              {{fields}}
               { renderPreviewList(instance, fields) }
             </div>
           </div>
