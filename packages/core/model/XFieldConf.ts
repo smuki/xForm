@@ -47,6 +47,8 @@ class Hook{
  * 描述字段类型的类，XForm就是根据它决定每一个字段的行为
  */
 export default class XFieldConf extends Hook{
+  // 字段名称
+  name: string;
   // 字段类型
   type: string;
   // 字段名称
@@ -66,7 +68,10 @@ export default class XFieldConf extends Hook{
 
   constructor(options: any = {}){
     super(options)
+    console.log("XFieldConf--->")
+    console.log(options)
 
+    this.name = options.name
     this.type = options.type
     this.title = options.title
     this.icon = options.icon
@@ -84,15 +89,16 @@ export default class XFieldConf extends Hook{
 
   /** 
    * 检测自身是否具备最可用的条件, 以下属性是必须的属性：
-   * - type 
+   * - type,name
    * @returns {boolean} 
    */
   get available(): boolean{
-    return this.type != null
+    return this.type != null || this.name != null
   }
 
   toParams(){
     return {
+      name: this.name,
       type: this.type,
       title: this.title
     }

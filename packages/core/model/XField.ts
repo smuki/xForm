@@ -55,7 +55,7 @@ function genName(){
 export default class XField{
   type: string;
   name: string;
-
+  label?: string;
   title?: string;
   placeholder?: string;
   required?: boolean;

@@ -21,7 +21,9 @@ export default defineComponent({
     <template #header>
       <h3 class="example-builder-title">笔记本电脑报修单</h3>
     </template>
+    <!--
     <xform-item name="address" title="地址">{{ model.address }}</xform-item>
+    -->
   </xform-viewer>
 </template>
 
