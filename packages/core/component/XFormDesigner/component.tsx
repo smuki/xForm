@@ -390,10 +390,13 @@ export default defineComponent({
     const slots = instance.$slots
     const schema: XFormSchema = instance.schema
     const groups: ModeGroup[] = instance.groups as ModeGroup[]
+    debugger
+    console.log(schema)
+    console.log(JSON.stringify(schema))
+
     const fields: XField[] = Array.isArray(schema.fields) ? schema.fields : []
     console.log(JSON.stringify(fields))
 
-    debugger
 
     const listClassName = {
       'xform-designer-list': true,
