@@ -165,9 +165,9 @@ export default new XFieldConf({
 
     // 插入时直接在对应位置添加新字段即可
     if(event.mode == 'insert'){
-      const type = event.data.type
-      const fc = store.findFieldConf(type)
+      const fc = event.data.field
       const index = Array.prototype.indexOf.call(dropEl.children, markEl)
+
       const newField = new XField(fc, group)
       group.fields.splice(index, 0, newField)
       context.updateSchema()

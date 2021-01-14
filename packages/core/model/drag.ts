@@ -3,6 +3,7 @@ import XField from './XField'
 import { ComponentInternalInstance } from 'vue'
 import { DragModeEnum, DirectionEnum, SELECTOR, ATTRS, CLASS } from './constant'
 import { getHtmlElement } from '@core/util/component'
+import XFieldConf from './XFieldConf';
 
 export interface GlobalDragContext {  
   instance: ComponentInternalInstance;
@@ -35,17 +36,19 @@ export class GlobalDragEvent{
   deltaY: number;
   // 携带的数据
   data: {
+    // 字段名称
+    name: string;
     // 字段类型
     type: string;
      // 字段
-    field?: XField;
+    field?: XFieldConf;
   }
   // 当前触发的原生事件
   originEvent: Event;
   // 事件上下文
   context: GlobalDragContext;
   
-  constructor(event: MouseEvent, mode: DragModeEnum, field: XField, context: GlobalDragContext){
+  constructor(event: MouseEvent, mode: DragModeEnum, field: XFieldConf, context: GlobalDragContext){
     const target = (event.target as Element).closest(SELECTOR.DRAGGABLE)
     const rect = target.getBoundingClientRect()
 
@@ -55,8 +58,7 @@ export class GlobalDragEvent{
     this.deltaX = mode == DragModeEnum.INSERT ? event.clientX - rect.left : 72
     this.deltaY = mode == DragModeEnum.INSERT ? event.clientY - rect.top : 17
 
-    this.data = { type: target.getAttribute(ATTRS.XFIELD_TYPE), field }
-    
+    this.data = {type: target.getAttribute(ATTRS.XFIELD_TYPE),name: target.getAttribute(ATTRS.XFIELD_NAME), field }
     this.originEvent = event
     this.context = context
   }

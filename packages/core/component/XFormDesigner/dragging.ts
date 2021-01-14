@@ -13,6 +13,7 @@ import {
   SELECTOR,
   XField, 
   XFormSchema,
+  XFieldConf,
 } from '@core/model'
 
 import { getHtmlElement } from '@core/util/component'
@@ -173,8 +174,10 @@ export default function useDragging(instance: ComponentInternalInstance, chooseF
     }
 
     if(EVENT.mode == 'insert'){
-      const type = target.getAttribute(ATTRS.XFIELD_TYPE)
-      const fc = Store.findFieldConf(type)
+      //const type = target.getAttribute(ATTRS.XFIELD_TYPE)
+      const fc = EVENT.data.field;
+          //debugger
+
       if(null != fc) {
         const field = new XField(fc, schema)
         schema.fields.splice(newIndex, 0, field)
@@ -186,10 +189,10 @@ export default function useDragging(instance: ComponentInternalInstance, chooseF
     }
   }
 
-  function dragstart(event: MouseEvent, mode: DragModeEnum, field?: XField){
+  function dragstart(event: MouseEvent, mode: DragModeEnum, field?: XFieldConf){
     // 屏蔽非鼠标左键的点击事件
     if(event.button !== 0 || !checkMode(mode)) return
-    
+
     GLOBAL.EVENT = new GlobalDragEvent(event, mode, field,  GLOBAL.CONTEXT)
     // 监听鼠标移动事件
     document.addEventListener('mousemove', dragging)

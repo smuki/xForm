@@ -121,16 +121,13 @@ function renderFieldPanel(groups: ModeGroup[], dragstart: Function){
     const title = group.title ? <h3>{group.title}</h3> : null
     const fcs = group.fieldConfs
     console.log(group)
-    debugger
     const types = fcs.filter(fc => fc != null).map(fc => {
       const props = {
         'class': 'xform-designer-field xform-draggable xform-template',
         'key': fc.type,
-        'onMousedown': (e: Event) => dragstart(e, DragModeEnum.INSERT),
-        [ATTRS.XFIELD_TYPE]: fc.type,
+        'onMousedown': (e: Event) => dragstart(e, DragModeEnum.INSERT,fc),
+        [ATTRS.XFIELD_NAME]: fc.name,
       }
-      console.log(fc)
-
       return (
         <div {...props}>
           <strong>{fc.title}</strong>
