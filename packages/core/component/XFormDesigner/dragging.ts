@@ -174,9 +174,9 @@ export default function useDragging(instance: ComponentInternalInstance, chooseF
     }
 
     if(EVENT.mode == 'insert'){
-      //const type = target.getAttribute(ATTRS.XFIELD_TYPE)
-      const fc = EVENT.data.field;
-          //debugger
+      // const type = target.getAttribute(ATTRS.XFIELD_TYPE)
+      const fc = EVENT.data.field
+      // debugger
 
       if(null != fc) {
         const field = new XField(fc, schema)

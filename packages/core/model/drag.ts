@@ -3,7 +3,7 @@ import XField from './XField'
 import { ComponentInternalInstance } from 'vue'
 import { DragModeEnum, DirectionEnum, SELECTOR, ATTRS, CLASS } from './constant'
 import { getHtmlElement } from '@core/util/component'
-import XFieldConf from './XFieldConf';
+import XFieldConf from './XFieldConf'
 
 export interface GlobalDragContext {  
   instance: ComponentInternalInstance;
@@ -58,7 +58,7 @@ export class GlobalDragEvent{
     this.deltaX = mode == DragModeEnum.INSERT ? event.clientX - rect.left : 72
     this.deltaY = mode == DragModeEnum.INSERT ? event.clientY - rect.top : 17
 
-    this.data = {type: target.getAttribute(ATTRS.XFIELD_TYPE),name: target.getAttribute(ATTRS.XFIELD_NAME), field }
+    this.data = { type: target.getAttribute(ATTRS.XFIELD_TYPE), name: target.getAttribute(ATTRS.XFIELD_NAME), field }
     this.originEvent = event
     this.context = context
   }

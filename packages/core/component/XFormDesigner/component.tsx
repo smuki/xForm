@@ -125,7 +125,7 @@ function renderFieldPanel(groups: ModeGroup[], dragstart: Function){
       const props = {
         'class': 'xform-designer-field xform-draggable xform-template',
         'key': fc.type,
-        'onMousedown': (e: Event) => dragstart(e, DragModeEnum.INSERT,fc),
+        'onMousedown': (e: Event) => dragstart(e, DragModeEnum.INSERT, fc),
         [ATTRS.XFIELD_NAME]: fc.name,
       }
       return (
