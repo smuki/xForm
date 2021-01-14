@@ -1,6 +1,5 @@
 import { store } from '@core/index'
 import Bootstrap from '@packages/bootstrap'
-import { debug } from 'webpack'
 
 enum TYPE {
   STYLE = 1,
@@ -12,107 +11,107 @@ const MODES = {
     {
       title: '基础字段',
       types: [
-        { name: 'text', type: 'text',label:'文本text'},
-        { name: 'text', type: 'text',label:'提交人'},
-        { name: 'textarea', type: 'textarea' , label: 'textarea' },
+        { name: 'text', type: 'text', label: '文本text' },
+        { name: 'text', type: 'text', label: '提交人' },
+        { name: 'textarea', type: 'textarea', label: 'textarea' },
         { name: 'number', type: 'number', label: 'number' },
         { name: 'select', type: 'select', label: 'select' },
         { name: 'radio', type: 'radio', label: 'radio' },
         { name: 'checkbox', type: 'checkbox', label: 'checkbox' },
         { name: 'date', type: 'date', label: 'date' }
       ],
-      fieldConfs:[
+      fieldConfs: [
         {
-          "type": "text",
-          "name": "field_kjv9ko6wxnif",
-          "title": "单行文本sasdsdf",
-          "placeholder": "",
-          "required": false,
-          "options": [],
-          "attributes": {},
-          "fields": []
+          type: 'text',
+          name: 'field_kjv9ko6wxnif',
+          title: '单行文本sasdsdf',
+          placeholder: '',
+          required: false,
+          options: [],
+          attributes: {},
+          fields: []
         },
         {
-          "type": "textarea",
-          "name": "field_kjv9pyhdslye",
-          "title": "多行文本asd",
-          "placeholder": "",
-          "required": false,
-          "options": [],
-          "attributes": {},
-          "fields": []
+          'type': 'textarea',
+          'name': 'field_kjv9pyhdslye',
+          'title': '多行文本asd',
+          'placeholder': '',
+          'required': false,
+          'options': [],
+          'attributes': {},
+          'fields': []
         },
         {
-          "type": "select",
-          "name": "field_kjv9pzc1sceq",
-          "title": "下x拉x框",
-          "placeholder": "",
-          "required": false,
-          "options": [
+          'type': 'select',
+          'name': 'field_kjv9pzc1sceq',
+          'title': '下x拉x框',
+          'placeholder': '',
+          'required': false,
+          'options': [
             {
-              "value": "选项1"
+              'value': '选项1'
             }
           ],
-          "attributes": {},
-          "fields": []
+          'attributes': {},
+          'fields': []
         },
         {
-          "type": "checkbox",
-          "name": "field_kjv9pzv591ql",
-          "title": "多x选x框",
-          "placeholder": "",
-          "required": false,
-          "options": [
+          'type': 'checkbox',
+          'name': 'field_kjv9pzv591ql',
+          'title': '多x选x框',
+          'placeholder': '',
+          'required': false,
+          'options': [
             {
-              "value": "选项1"
+              'value': '选项1'
             }
           ],
-          "attributes": {},
-          "fields": []
+          'attributes': {},
+          'fields': []
         },
         {
-          "type": "text",
-          "name": "field_kjvapechqehm",
-          "title": "单x行x文x本",
-          "placeholder": "",
-          "required": false,
-          "options": [],
-          "attributes": {},
-          "fields": []
+          'type': 'text',
+          'name': 'field_kjvapechqehm',
+          'title': '单x行x文x本',
+          'placeholder': '',
+          'required': false,
+          'options': [],
+          'attributes': {},
+          'fields': []
         },
         {
-          "type": "checkbox",
-          "name": "field_kjvez0yefyng",
-          "title": "多1选2框",
-          "placeholder": "",
-          "required": false,
-          "options": [
+          'type': 'checkbox',
+          'name': 'field_kjvez0yefyng',
+          'title': '多1选2框',
+          'placeholder': '',
+          'required': false,
+          'options': [
             {
-              "value": "选项1"
+              'value': '选项1'
             }
           ],
-          "attributes": {},
-          "fields": []
+          'attributes': {},
+          'fields': []
         },
         {
-          "type": "checkbox",
-          "name": "field_kjvez0y9w11k",
-          "title": "多3选4框",
-          "placeholder": "",
-          "required": false,
-          "options": [
+          'type': 'checkbox',
+          'name': 'field_kjvez0y9w11k',
+          'title': '多3选4框',
+          'placeholder': '',
+          'required': false,
+          'options': [
             {
-              "value": "选项1"
+              'value': '选项1'
             }
           ],
-          "attributes": {},
-          "fields": []
+          'attributes': {},
+          'fields': []
         }
       ]
     },
     {
       title: '辅助字段',
-      fieldConfs:[
+      fieldConfs: [
         { name: 'divider', type: 'divider', label: 'divider' },
         { name: 'group', type: 'group', label: 'group' }
       ],

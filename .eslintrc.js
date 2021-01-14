@@ -36,7 +36,7 @@ module.exports = {
     // Best Practices
     'no-else-return': 'error',
     'no-empty-function': 'error',
-
+    'no-debugger': 'off',
     // Possible Errors
     'require-atomic-updates': 'off',
 
@@ -60,7 +60,7 @@ module.exports = {
     // typescript
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/no-unused-vars': ['error', { 'argsIgnorePattern': 'h|event' }],
+    '@typescript-eslint/no-unused-vars': ['warn', { 'argsIgnorePattern': 'h|event' }],
     '@typescript-eslint/ban-types': 'off',
     '@typescript-eslint/no-use-before-define': ['error', { 'functions': false, 'classes': true, 'variables': true }],
     '@typescript-eslint/explicit-module-boundary-types': 'off',

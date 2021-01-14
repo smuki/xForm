@@ -121,7 +121,7 @@ function renderFieldPanel(groups: ModeGroup[], dragstart: Function){
     const title = group.title ? <h3>{group.title}</h3> : null
     const fcs = group.fieldConfs
     console.log(group)
-debugger
+    debugger
     const types = fcs.filter(fc => fc != null).map(fc => {
       const props = {
         'class': 'xform-designer-field xform-draggable xform-template',
@@ -326,7 +326,7 @@ export default defineComponent({
       if(null == mode || mode.length == 0) return []
 
       const group = (typeof mode[0] != 'object' ? [{ types: mode, title: '' }] : mode) as ModeGroup[]
-      //for(const g of group) g.fieldConfs = g.fields;
+      // for(const g of group) g.fieldConfs = g.fields;
       return group
     })
 
@@ -394,7 +394,7 @@ export default defineComponent({
     const schema: XFormSchema = instance.schema
     const groups: ModeGroup[] = instance.groups as ModeGroup[]
     const fields: XField[] = Array.isArray(schema.fields) ? schema.fields : []
-console.log(JSON.stringify(fields));
+    console.log(JSON.stringify(fields))
 
     debugger
 
@@ -410,7 +410,7 @@ console.log(JSON.stringify(fields));
           { typeof slots.tool == 'function' && slots.tool() }
           <div ref="scroll" class="xform-designer-scroll xform-is-scroll">
             <div ref="list" class={listClassName}>
-              {{fields}}
+              {{ fields }}
               { renderPreviewList(instance, fields) }
             </div>
           </div>

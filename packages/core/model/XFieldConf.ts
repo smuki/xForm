@@ -68,7 +68,7 @@ export default class XFieldConf extends Hook{
 
   constructor(options: any = {}){
     super(options)
-    console.log("XFieldConf--->")
+    console.log('XFieldConf--->')
     console.log(options)
 
     this.name = options.name
