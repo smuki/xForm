@@ -180,7 +180,7 @@ export default function useDragging(instance: ComponentInternalInstance, chooseF
 
       if(null != fc) {
         const field = new XField(fc, schema)
-        console.log("--------------")
+        console.log('--------------')
         console.log(field)
         schema.fields.splice(newIndex, 0, field)
         instance.emit('update:schema', schema)

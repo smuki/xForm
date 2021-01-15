@@ -122,7 +122,7 @@ function renderFieldPanel(groups: ModeGroup[], dragstart: Function){
     const fcs = group.fields
     console.log(group)
     const types = fcs.filter(fc => fc != null).map(fc => {
-      let xfc=new XFieldConf(fc);
+      const xfc=new XFieldConf(fc)
       const props = {
         'class': 'xform-designer-field xform-draggable xform-template',
         'key': fc.type,
