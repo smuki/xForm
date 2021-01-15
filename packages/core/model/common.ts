@@ -29,8 +29,7 @@ export interface XFormPreset {
 
 export interface ModeGroup {
   title?: string;
-  types: XField[];
-  fieldConfs?: XFieldConf[];
+  fields?: XField[];
 }
 
 export interface ModeConf {
