@@ -180,6 +180,8 @@ export default function useDragging(instance: ComponentInternalInstance, chooseF
 
       if(null != fc) {
         const field = new XField(fc, schema)
+        console.log("--------------")
+        console.log(field)
         schema.fields.splice(newIndex, 0, field)
         instance.emit('update:schema', schema)
 
@@ -189,7 +191,7 @@ export default function useDragging(instance: ComponentInternalInstance, chooseF
     }
   }
 
-  function dragstart(event: MouseEvent, mode: DragModeEnum, field?: XFieldConf){
+  function dragstart(event: MouseEvent, mode: DragModeEnum, field?: XField){
     // 屏蔽非鼠标左键的点击事件
     if(event.button !== 0 || !checkMode(mode)) return
 

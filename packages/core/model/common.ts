@@ -12,7 +12,7 @@ export type XFormModel = AnyProps
 export type RawProps = VNodeProps & AnyProps
 
 export interface XFormSchema extends AnyProps {
-  fields: XFieldConf[];
+  fields: XField[];
   labelSuffix?: string;
   labelPosition?: string;
   viewerPlaceholder?: string;

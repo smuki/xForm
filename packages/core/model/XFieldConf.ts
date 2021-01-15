@@ -52,7 +52,7 @@ export default class XFieldConf extends Hook{
   // 字段类型
   type: string;
   // 字段名称
-  title: string;
+  label: string;
   // 字段icon
   icon?: string | Function;
 
@@ -73,7 +73,7 @@ export default class XFieldConf extends Hook{
 
     this.name = options.name
     this.type = options.type
-    this.title = options.title
+    this.label = options.label
     this.icon = options.icon
 
     this.scoped = options.scoped === true
@@ -100,7 +100,7 @@ export default class XFieldConf extends Hook{
     return {
       name: this.name,
       type: this.type,
-      title: this.title
+      label: this.label
     }
   }
 }

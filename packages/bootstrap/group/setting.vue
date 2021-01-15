@@ -2,7 +2,7 @@
   <h3 class="xform-setting-head">分组</h3>
   <section class="xform-setting">
     <header>标题：</header>
-    <input :value="field.title" type="text" class="form-control form-control-sm" placeholder="请输入标题..." @input="updateField($event, 'title')">
+    <input :value="field.label" type="text" class="form-control form-control-sm" placeholder="请输入标题..." @input="updateField($event, 'label')">
   </section>
 
   <section class="xform-setting">

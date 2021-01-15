@@ -1,4 +1,4 @@
-import Store from '@core/store'
+import Store, { findFieldConf } from '@core/store'
 import useDragging from './dragging'
 
 import { 
@@ -119,19 +119,20 @@ function renderFieldPanel(groups: ModeGroup[], dragstart: Function){
   console.log(groups)
   return groups.map((group, i) => {
     const title = group.title ? <h3>{group.title}</h3> : null
-    const fcs = group.fieldConfs
+    const fcs = group.fields
     console.log(group)
     const types = fcs.filter(fc => fc != null).map(fc => {
+      let xfc=new XFieldConf(fc);
       const props = {
         'class': 'xform-designer-field xform-draggable xform-template',
         'key': fc.type,
-        'onMousedown': (e: Event) => dragstart(e, DragModeEnum.INSERT, fc),
+        'onMousedown': (e: Event) => dragstart(e, DragModeEnum.INSERT, xfc),
         [ATTRS.XFIELD_NAME]: fc.name,
       }
       return (
         <div {...props}>
-          <strong>{fc.title}</strong>
-          {renderIcon(fc)}
+          <strong>{fc.label}</strong>
+          {renderIcon(xfc)}
         </div>
       ) 
     })
@@ -154,7 +155,7 @@ function renderItem(field: XField, mode: string, renderField: Function){
   }
 
   if(null == component) {
-    console.warn(`field[${field.title}: ${field.name}] not implement preview component`)
+    console.warn(`field[${field.label}: ${field.name}] not implement preview component`)
     return <p class="xform-is-unknown">暂不支持的字段类型</p>
   }
 
@@ -225,7 +226,7 @@ function renderFieldSetting(field: XField, slots: Slots, instance: XFormDesigner
   if(typeSlot.length > 0) return typeSlot
 
   if(field.conf.setting == null) {
-    console.warn(`field[${field.title}: ${field.name}] not implement setting component`)
+    console.warn(`field[${field.label}: ${field.name}] not implement setting component`)
     return null
   }
 
@@ -358,7 +359,7 @@ export default defineComponent({
     }
     
     const remove = function(field: XField){
-      const message = `确定要删除字段[${field.title}]?`
+      const message = `确定要删除字段[${field.label}]?`
       return Store.getConfig().confirm(message).then(res => {
         if(res === true) {
           const scope = findFieldScope(field, props.schema, instance.refs.list)

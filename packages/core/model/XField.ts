@@ -56,7 +56,6 @@ export default class XField{
   type: string;
   name: string;
   label?: string;
-  title?: string;
   placeholder?: string;
   required?: boolean;
   options?: Option[];
@@ -80,7 +79,7 @@ export default class XField{
 
     this.type = params.type
     this.name = params.name ?? genName()
-    this.title = params.title
+    this.label = params.label
     
     this.placeholder = params.placeholder ?? ''    
     this.required = params.required === true

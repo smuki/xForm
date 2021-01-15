@@ -41,14 +41,14 @@ export class GlobalDragEvent{
     // 字段类型
     type: string;
      // 字段
-    field?: XFieldConf;
+    field?: XField;
   }
   // 当前触发的原生事件
   originEvent: Event;
   // 事件上下文
   context: GlobalDragContext;
   
-  constructor(event: MouseEvent, mode: DragModeEnum, field: XFieldConf, context: GlobalDragContext){
+  constructor(event: MouseEvent, mode: DragModeEnum, field: XField, context: GlobalDragContext){
     const target = (event.target as Element).closest(SELECTOR.DRAGGABLE)
     const rect = target.getBoundingClientRect()
 
@@ -117,11 +117,11 @@ export class GlobalDragEvent{
     const field = this.data.field
     const selector = `${SELECTOR.FIELD}[${ATTRS.XFIELD_TYPE}="${field.type}"]`
     const element = scope.querySelector(selector)
-    if(null == element) return `<div class="xform-designer-field"><strong>${field.title}</strong></div>`
+    if(null == element) return `<div class="xform-designer-field"><strong>${field.label}</strong></div>`
     
     return element.outerHTML.replace(
       /<strong>(.*)<\/strong>/, 
-      `<strong>${field.title}</strong>`
+      `<strong>${field.label}</strong>`
     )
   }
 }

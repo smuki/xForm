@@ -29,7 +29,7 @@ function useHeader(){
   }
 
   function renderHeader(field: XField){
-    if(null == field.title) return null
+    if(null == field.label) return null
   
     const btn = (
       field.attributes.collapsable === true
@@ -45,7 +45,7 @@ function useHeader(){
         : null
     )
   
-    return <h6 class="card-header">{ btn }<span>{ field.title }</span></h6>
+    return <h6 class="card-header">{ btn }<span>{ field.label }</span></h6>
   }
 
   return { collasped, renderHeader }

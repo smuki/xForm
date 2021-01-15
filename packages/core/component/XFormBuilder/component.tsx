@@ -84,7 +84,7 @@ function renderField(instance: XFormBuilderInstance, slots: Slots, value: any, f
     if(typeSlot.length > 0) return typeSlot
     
     if(field.conf == null || field.conf.build == null) {
-      console.warn(`field[${field.title}: ${field.name}] not implement build component`)
+      console.warn(`field[${field.label}: ${field.name}] not implement build component`)
       return <p class="xform-is-unknown">暂不支持的字段类型</p>
     }
 

@@ -10,7 +10,7 @@ const MODES = {
   example: [
     {
       title: '基础字段',
-      fieldConfs: [
+      fields: [
         {
           type: 'text',
           name: 'field_kjv9ko6wxnif',
@@ -25,7 +25,7 @@ const MODES = {
     },
     {
       title: '辅助字段',
-      fieldConfs: [
+      fields: [
         { 
           name: 'divider', 
           type: 'divider', 
@@ -38,8 +38,7 @@ const MODES = {
         }
       ]
     }
-  ],
-  simple: ['text', 'textarea', 'number', 'select']
+  ]
 }
 
 const CONFIGS = {
