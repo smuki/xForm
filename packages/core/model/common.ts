@@ -15,6 +15,7 @@ export interface XFormSchema extends AnyProps {
   fields: XField[];
   labelSuffix?: string;
   labelPosition?: string;
+
   viewerPlaceholder?: string;
 }
 
@@ -29,7 +30,8 @@ export interface XFormPreset {
 
 export interface ModeGroup {
   title?: string;
-  fields?: XField[];
+  types: string[];
+  fieldConfs?: XFieldConf[];
 }
 
 export interface ModeConf {

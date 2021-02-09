@@ -1,4 +1,4 @@
-import Store, { findFieldConf } from '@core/store'
+import Store from '@core/store'
 import useDragging from './dragging'
 
 import { 
@@ -116,23 +116,21 @@ function renderIcon(fc: XFieldConf){
 }
 
 function renderFieldPanel(groups: ModeGroup[], dragstart: Function){
-  console.log(groups)
   return groups.map((group, i) => {
     const title = group.title ? <h3>{group.title}</h3> : null
-    const fcs = group.fields
-    console.log(group)
+    const fcs = group.fieldConfs
     const types = fcs.filter(fc => fc != null).map(fc => {
-      const xfc=new XFieldConf(fc)
       const props = {
         'class': 'xform-designer-field xform-draggable xform-template',
         'key': fc.type,
-        'onMousedown': (e: Event) => dragstart(e, DragModeEnum.INSERT, xfc),
-        [ATTRS.XFIELD_NAME]: fc.name,
+        'onMousedown': (e: Event) => dragstart(e, DragModeEnum.INSERT),
+        [ATTRS.XFIELD_TYPE]: fc.type,
       }
+
       return (
         <div {...props}>
-          <strong>{fc.label}</strong>
-          {renderIcon(xfc)}
+          <strong>{fc.title}</strong>
+          {renderIcon(fc)}
         </div>
       ) 
     })
@@ -155,7 +153,7 @@ function renderItem(field: XField, mode: string, renderField: Function){
   }
 
   if(null == component) {
-    console.warn(`field[${field.label}: ${field.name}] not implement preview component`)
+    console.warn(`field[${field.title}: ${field.name}] not implement preview component`)
     return <p class="xform-is-unknown">暂不支持的字段类型</p>
   }
 
@@ -226,7 +224,7 @@ function renderFieldSetting(field: XField, slots: Slots, instance: XFormDesigner
   if(typeSlot.length > 0) return typeSlot
 
   if(field.conf.setting == null) {
-    console.warn(`field[${field.label}: ${field.name}] not implement setting component`)
+    console.warn(`field[${field.title}: ${field.name}] not implement setting component`)
     return null
   }
 
@@ -324,7 +322,7 @@ export default defineComponent({
       if(null == mode || mode.length == 0) return []
 
       const group = (typeof mode[0] != 'object' ? [{ types: mode, title: '' }] : mode) as ModeGroup[]
-      // for(const g of group) g.fieldConfs = g.fields;
+      for(const g of group) g.fieldConfs = g.types.map(Store.findFieldConf)
       return group
     })
 
@@ -359,7 +357,7 @@ export default defineComponent({
     }
     
     const remove = function(field: XField){
-      const message = `确定要删除字段[${field.label}]?`
+      const message = `确定要删除字段[${field.title}]?`
       return Store.getConfig().confirm(message).then(res => {
         if(res === true) {
           const scope = findFieldScope(field, props.schema, instance.refs.list)
@@ -391,13 +389,7 @@ export default defineComponent({
     const slots = instance.$slots
     const schema: XFormSchema = instance.schema
     const groups: ModeGroup[] = instance.groups as ModeGroup[]
-    debugger
-    console.log(schema)
-    console.log(JSON.stringify(schema))
-
     const fields: XField[] = Array.isArray(schema.fields) ? schema.fields : []
-    console.log(JSON.stringify(fields))
-
 
     const listClassName = {
       'xform-designer-list': true,
@@ -411,7 +403,6 @@ export default defineComponent({
           { typeof slots.tool == 'function' && slots.tool() }
           <div ref="scroll" class="xform-designer-scroll xform-is-scroll">
             <div ref="list" class={listClassName}>
-              {{ fields }}
               { renderPreviewList(instance, fields) }
             </div>
           </div>

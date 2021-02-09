@@ -3,7 +3,6 @@ import XField from './XField'
 import { ComponentInternalInstance } from 'vue'
 import { DragModeEnum, DirectionEnum, SELECTOR, ATTRS, CLASS } from './constant'
 import { getHtmlElement } from '@core/util/component'
-import XFieldConf from './XFieldConf'
 
 export interface GlobalDragContext {  
   instance: ComponentInternalInstance;
@@ -36,8 +35,6 @@ export class GlobalDragEvent{
   deltaY: number;
   // 携带的数据
   data: {
-    // 字段名称
-    name: string;
     // 字段类型
     type: string;
      // 字段
@@ -58,7 +55,8 @@ export class GlobalDragEvent{
     this.deltaX = mode == DragModeEnum.INSERT ? event.clientX - rect.left : 72
     this.deltaY = mode == DragModeEnum.INSERT ? event.clientY - rect.top : 17
 
-    this.data = { type: target.getAttribute(ATTRS.XFIELD_TYPE), name: target.getAttribute(ATTRS.XFIELD_NAME), field }
+    this.data = { type: target.getAttribute(ATTRS.XFIELD_TYPE), field }
+    
     this.originEvent = event
     this.context = context
   }
@@ -117,11 +115,11 @@ export class GlobalDragEvent{
     const field = this.data.field
     const selector = `${SELECTOR.FIELD}[${ATTRS.XFIELD_TYPE}="${field.type}"]`
     const element = scope.querySelector(selector)
-    if(null == element) return `<div class="xform-designer-field"><strong>${field.label}</strong></div>`
+    if(null == element) return `<div class="xform-designer-field"><strong>${field.title}</strong></div>`
     
     return element.outerHTML.replace(
       /<strong>(.*)<\/strong>/, 
-      `<strong>${field.label}</strong>`
+      `<strong>${field.title}</strong>`
     )
   }
 }

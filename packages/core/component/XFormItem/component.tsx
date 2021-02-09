@@ -65,7 +65,7 @@ function renderContent(slots: Slots, field: XField, model: XFormModel, context: 
 function patchField(field: XField, o: any){
   field.type = o.type
   field.name = o.name
-  field.label = o.label
+  field.title = o.title
 
   field.required = 'required' in o && o.required !== false
 }
@@ -134,7 +134,7 @@ export default defineComponent({
       return (
         <div class={className}>
           <label class="xform-item-label" for={field.name}>
-            <span class="xform-item-title">{field.label}</span>
+            <span class="xform-item-title">{field.title}</span>
             {renderLabelSuffix(labelSuffix)}
           </label>
           <div class="xform-item-content">

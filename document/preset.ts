@@ -10,35 +10,14 @@ const MODES = {
   example: [
     {
       title: '基础字段',
-      fields: [
-        {
-          type: 'text',
-          name: 'field_kjv9ko6wxnif',
-          label: '单行文本sasdsdf',
-        },
-        {
-          type: 'textarea',
-          name: 'field_kjv9pyhdslye',
-          label: '多行文本asd',
-        },
-      ]
+      types: ['text', 'textarea', 'number', 'select', 'radio', 'checkbox', 'date']
     },
     {
       title: '辅助字段',
-      fields: [
-        { 
-          name: 'divider', 
-          type: 'divider', 
-          label: 'divider' 
-        },
-        {
-          name: 'group',
-          type: 'group',
-          label: 'group'
-        }
-      ]
+      types: ['divider', 'group']
     }
-  ]
+  ],
+  simple: ['text', 'textarea', 'number', 'select']
 }
 
 const CONFIGS = {
@@ -49,55 +28,55 @@ const CONFIGS = {
       ['https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js', TYPE.SCRIPT],
       ['https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js', TYPE.SCRIPT]
     ],
-    factory() {
+    factory(){
       return Promise.resolve(Bootstrap)
     }
   },
   'antdv': {
     source: [],
-    factory() {
+    factory(){
       return Promise.resolve(null)
     }
   }
 } as any
 
-function findNode(link: string, type: number) {
+function findNode(link: string, type: number){
   const selector = (
-    type == TYPE.STYLE
+    type == TYPE.STYLE 
       ? `link[rel="stylesheet"][href="${link}"]`
       : `script[src="${link}"]`
   )
-
+  
   return document.querySelector(selector)
 }
 
-function removeSource(source: any) {
-  if (!Array.isArray(source)) return
+function removeSource(source: any){
+  if(!Array.isArray(source)) return
 
-  for (const arr of source) {
-    const [link, type] = arr
+  for(const arr of source){
+    const [link, type]= arr
     const node = findNode(link, type)
 
-    if (node != null) node.remove()
+    if(node != null) node.remove()
   }
 }
 
-function loadSource(source: any) {
-  if (!Array.isArray(source)) return Promise.resolve()
+function loadSource(source: any){
+  if(!Array.isArray(source)) return Promise.resolve()
 
   const promises = source.map(arr => createNode(arr[0], arr[1]))
   return Promise.allSettled(promises)
 }
 
-function createNode(link: string, type: number) {
-  if (type == TYPE.STYLE) return createStyle(link)
-  if (type == TYPE.SCRIPT) return createScript(link)
+function createNode(link: string, type: number){
+  if(type == TYPE.STYLE) return createStyle(link)
+  if(type == TYPE.SCRIPT) return createScript(link)
 
   return Promise.resolve()
 }
 
-function createStyle(link: string) {
-  if (null != findNode(link, TYPE.STYLE)) return Promise.resolve()
+function createStyle(link: string){
+  if(null != findNode(link, TYPE.STYLE)) return Promise.resolve()
 
   return new Promise((resolve, reject) => {
     const node = document.createElement('link')
@@ -110,9 +89,9 @@ function createStyle(link: string) {
   })
 }
 
-function createScript(link: string) {
-  if (null != findNode(link, TYPE.SCRIPT)) return Promise.resolve()
-
+function createScript(link: string){
+  if(null != findNode(link, TYPE.SCRIPT)) return Promise.resolve()
+  
   return new Promise((resolve, reject) => {
     const node = document.createElement('script')
     node.src = link
@@ -124,19 +103,19 @@ function createScript(link: string) {
   })
 }
 
-export async function usePreset(target: string, state: { preset: string, key: number, loading: boolean }) {
-  if (target == state.preset) return
+export async function usePreset(target: string, state: { preset: string, key: number, loading: boolean }){
+  if(target == state.preset) return
 
   const config = CONFIGS[target]
-  if (null == config) return
+  if(null == config) return
 
   state.loading = true
   const preset = await config.factory()
 
   const old = CONFIGS[state.preset]
-  if (null != old) removeSource(old.source)
+  if(null != old) removeSource(old.source)
   await loadSource(config.source)
-
+  
   store.reset({
     preset,
     config: { modes: MODES }

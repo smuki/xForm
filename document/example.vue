@@ -9,6 +9,7 @@
       <nav class="nav">
         <router-link to="/example/designer" class="nav-link"><strong>1. </strong>设计表单</router-link>
         <router-link to="/example/builder" class="nav-link"><strong>2. </strong>填写表单</router-link>
+        <router-link to="/example/render" class="nav-link"><strong>31. </strong>查看表x单</router-link>
         <router-link to="/example/viewer" class="nav-link"><strong>3. </strong>查看表单</router-link>
       </nav>
 

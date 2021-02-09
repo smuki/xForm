@@ -29,7 +29,7 @@ function useHeader(){
   }
 
   function renderHeader(field: XField){
-    if(null == field.label) return null
+    if(null == field.title) return null
   
     const btn = (
       field.attributes.collapsable === true
@@ -45,7 +45,7 @@ function useHeader(){
         : null
     )
   
-    return <h6 class="card-header">{ btn }<span>{ field.label }</span></h6>
+    return <h6 class="card-header">{ btn }<span>{ field.title }</span></h6>
   }
 
   return { collasped, renderHeader }
@@ -165,9 +165,9 @@ export default new XFieldConf({
 
     // 插入时直接在对应位置添加新字段即可
     if(event.mode == 'insert'){
-      const fc = event.data.field
+      const type = event.data.type
+      const fc = store.findFieldConf(type)
       const index = Array.prototype.indexOf.call(dropEl.children, markEl)
-
       const newField = new XField(fc, group)
       group.fields.splice(index, 0, newField)
       context.updateSchema()
