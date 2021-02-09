@@ -288,8 +288,8 @@
   display: none;
   position: relative;
   margin: 5px 0;
-  height: 3px;
-  background-color: red;
+  height: 50px;
+  border: 1px dashed green;
   z-index: 10;
 }
 
@@ -297,7 +297,6 @@
 .xform-designer-mark::before{
   content: "";
   position: absolute;
-  
   top: -5px;
   border-top: 7px solid transparent;
   border-bottom: 7px solid transparent;
@@ -306,12 +305,12 @@
 
 .xform-designer-mark::before{
   left: 0;
-  border-left: 4px solid red;
+  /*border-left: 4px solid red;*/
 }
 
 .xform-designer-mark::after{
   right: 0;
-  border-right: 4px solid red;
+  /*border-right: 4px solid red;*/
 }
 
 .xform-is-silence .xform-designer-mark{
