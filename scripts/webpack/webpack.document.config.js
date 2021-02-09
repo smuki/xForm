@@ -3,6 +3,7 @@ const { IS_PRODUCTION, NODE_ENV } = require('./args')
 const path = require('path')
 const webpack = require('webpack')
 const { merge } = require('webpack-merge')
+const { genHtmlWebpackPlugin } = require('./util')
 const baseConfig = require('./webpack.base.config')
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -18,6 +19,15 @@ const common = {
     alias: {
       '@config': path.resolve(__dirname, `../env/${NODE_ENV}.js`)
     }
+  },
+  module: {
+    rules: [{
+      test: /\.md$/,
+      use: [
+        'html-loader',
+        path.resolve(__dirname, './loaders/markdown-loader')
+      ]
+    }]
   }
 }
 
@@ -71,14 +81,8 @@ const production = {
       filename: '[name].[contenthash:8].css',
       chunkFilename: '[name].[contenthash:8].css'
     }),
-    new HtmlWebpackPlugin({
-      template: './document/index.html',
-      filename: './index.html',
-    }),
-    new HtmlWebpackPlugin({
-      template: './document/index.html',
-      filename: './404.html',
-    })
+    genHtmlWebpackPlugin('./index.html'),
+    genHtmlWebpackPlugin('./404.html')
   ]
 }
 
