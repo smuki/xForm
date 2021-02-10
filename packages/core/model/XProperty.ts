@@ -13,7 +13,7 @@ interface Option {
  * 
  * 1. 保存预设字段的配置数据
  */
-export class XDefineField{
+export class XProperty{
   type: string;
   name: string;  
   title?: string;
