@@ -1,7 +1,5 @@
 
-import { getConfig } from '../store'
 import { markRaw } from 'vue'
-import { XFieldConf } from '.'
 
 /** 
  * 描述预设字段数据的类。
@@ -16,10 +14,10 @@ export class XProperty{
   attributes?: { [prop: string]: any };
 
   constructor(o: any = {}){
-    const params = o instanceof XFieldConf ? o.toParams() : o
+    const params = o
 
     this.type = params.type
-    this.name = params.name ?? getConfig().genName(o)
+    this.name = params.name
     this.title = params.title
     
     this.attributes = params.attributes ?? {}
