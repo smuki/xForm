@@ -1,7 +1,6 @@
 
 import { getConfig } from '../store'
 import { markRaw } from 'vue'
-import { AnyProps } from './common'
 import { XFieldConf } from '.'
 
 /** 
