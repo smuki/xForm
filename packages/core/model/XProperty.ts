@@ -4,10 +4,6 @@ import { markRaw } from 'vue'
 import { AnyProps } from './common'
 import { XFieldConf } from '.'
 
-interface Option {
-  value: string;
-}
-
 /** 
  * 描述预设字段数据的类。
  * 
@@ -18,15 +14,7 @@ export class XProperty{
   name: string;  
   title?: string;
 
-  options?: Option[];
-
   attributes?: { [prop: string]: any };
-
-  // 缓存
-  private storage: {
-    rawData: any;
-    excludeProps: string[];
-  } & AnyProps;
 
   constructor(o: any = {}){
     const params = o instanceof XFieldConf ? o.toParams() : o
@@ -35,7 +23,6 @@ export class XProperty{
     this.name = params.name ?? getConfig().genName(o)
     this.title = params.title
     
-    this.options = Array.isArray(params.options) ? params.options : undefined
     this.attributes = params.attributes ?? {}
 
     Object.defineProperty(this, 'storage', {
